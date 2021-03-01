@@ -1,6 +1,12 @@
 <?php
 
-/**
- * Reprenez le code de l'exercice précédent et transformez vos requêtes pour utiliser les requêtes préparées
- * la méthode de bind du paramètre et du choix du marqueur de données est à votre convenance.
- */
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=projet-perso', "root", "");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $conn = $pdo->prepare();
+    $conn->execute();
+}
+catch(PDOException $exception){
+    echo $exception->getMessage();
+    $pdo->rollBack();
+}
